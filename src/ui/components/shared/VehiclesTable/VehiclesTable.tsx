@@ -62,12 +62,7 @@ export const VehiclesTable: React.FC<Props> = ({
         <DialogContent>
           <Box
             component="form"
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 2,
-              paddingBlock: 1,
-            }}
+            className="py-2 flex flex-col gap-4"
             id="vehicle-form"
             onSubmit={onSubmit}
           >

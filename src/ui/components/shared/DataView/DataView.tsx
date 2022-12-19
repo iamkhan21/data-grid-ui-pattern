@@ -19,17 +19,14 @@ export const DataView: React.FC<Props> = ({
 }) => {
   return (
     <article>
-      <Box
-        component="section"
-        sx={{ paddingBlock: 1, display: "flex", alignItems: "end" }}
-      >
+      <Box component="section" className="py-4 flex items-end gap-6">
         <Box>
           {typeof title === "string" ? <h2>{title}</h2> : title}
           {typeof subtitle === "string" ? <p>{subtitle}</p> : subtitle}
         </Box>
 
         {Boolean(btn) && typeof btn === "string" ? (
-          <Button sx={{ marginLeft: "auto" }} onClick={onBtnClick}>
+          <Button className="ml-auto!" onClick={onBtnClick}>
             {btn}
           </Button>
         ) : (
@@ -37,7 +34,7 @@ export const DataView: React.FC<Props> = ({
         )}
       </Box>
 
-      <Box component="section" sx={{}}>
+      <Box component="section">
         <DataGrid autoHeight {...props} />
       </Box>
     </article>

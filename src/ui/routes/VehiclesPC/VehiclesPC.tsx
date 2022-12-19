@@ -23,14 +23,7 @@ const columns = [
     headerName: "",
     flex: 1,
     renderCell: (params: GridRenderCellParams) => (
-      <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "flex-end",
-          gap: 1,
-        }}
-      >
+      <Box className="w-full flex justify-end gap-2">
         <Button variant="contained" size="small">
           Edit
         </Button>

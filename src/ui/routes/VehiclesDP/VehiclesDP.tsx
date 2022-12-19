@@ -34,12 +34,7 @@ const columns = [
     flex: 1,
     renderCell: (params: GridRenderCellParams) => (
       <Box
-        sx={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "flex-end",
-          gap: 1,
-        }}
+          className="w-full flex justify-end gap-2"
       >
         <Button variant="contained" size="small">
           Delete
