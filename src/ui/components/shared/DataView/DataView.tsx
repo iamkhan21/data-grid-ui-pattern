@@ -18,7 +18,7 @@ export const DataView: React.FC<Props> = ({
   ...props
 }) => {
   return (
-    <article>
+    <article className="bg-green-300">
       <Box component="section" className="py-4 flex items-end gap-6">
         <Box>
           {typeof title === "string" ? <h2>{title}</h2> : title}

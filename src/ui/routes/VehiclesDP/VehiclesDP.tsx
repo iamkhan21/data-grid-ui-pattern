@@ -1,6 +1,10 @@
 import React from "react";
 import { VehiclesTable } from "../../components/shared/VehiclesTable";
-import { GridRenderCellParams, GridRowsProp } from "@mui/x-data-grid";
+import {
+  GridColDef,
+  GridRenderCellParams,
+  GridRowsProp,
+} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
@@ -25,17 +29,27 @@ const rows: GridRowsProp = [
   },
 ];
 
-const columns = [
-  { field: "type", headerName: "Type", maxWidth: 250, flex: 1 },
-  { field: "state", headerName: "State", width: 150 },
+const columns: GridColDef[] = [
+  {
+    field: "type",
+    headerName: "Type",
+    maxWidth: 250,
+    flex: 1,
+    cellClassName: "bg-rose-300",
+  },
+  {
+    field: "state",
+    headerName: "State",
+    width: 150,
+    cellClassName: "bg-rose-300",
+  },
   {
     field: "action",
     headerName: "",
     flex: 1,
+    cellClassName: "bg-rose-300",
     renderCell: (params: GridRenderCellParams) => (
-      <Box
-          className="w-full flex justify-end gap-2"
-      >
+      <Box className="w-full flex justify-end gap-2">
         <Button variant="contained" size="small">
           Delete
         </Button>

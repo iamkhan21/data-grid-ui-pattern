@@ -6,16 +6,25 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import Dialog from "@mui/material/Dialog";
 
-const defaultColumns = [
+const defaultColumns: GridColDef[] = [
   {
     field: "photo",
     headerName: "Photo",
     width: 80,
+    cellClassName: "bg-yellow-300",
     renderCell: (params: GridRenderCellParams) => {
-      return <img height={50} width={50} src={params.formattedValue} alt="" />;
+      return (
+        <img
+          className="p-1"
+          height={50}
+          width={50}
+          src={params.formattedValue}
+          alt=""
+        />
+      );
     },
   },
 ];
@@ -59,7 +68,7 @@ export const VehiclesTable: React.FC<Props> = ({
         fullWidth
       >
         <DialogTitle id="alert-dialog-title">New vehicle</DialogTitle>
-        <DialogContent>
+        <DialogContent className="bg-yellow-300">
           <Box
             component="form"
             className="py-2 flex flex-col gap-4"

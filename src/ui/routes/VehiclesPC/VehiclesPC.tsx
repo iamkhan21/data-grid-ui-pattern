@@ -1,6 +1,10 @@
 import React from "react";
 import { VehiclesTable } from "../../components/shared/VehiclesTable";
-import { GridRenderCellParams, GridRowsProp } from "@mui/x-data-grid";
+import {
+  GridColDef,
+  GridRenderCellParams,
+  GridRowsProp,
+} from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
@@ -15,13 +19,25 @@ const rows: GridRowsProp = [
   { id: 3, photo: "https://via.placeholder.com/150", name: "MUI", age: 32 },
 ];
 
-const columns = [
-  { field: "name", headerName: "Name", width: 150 },
-  { field: "age", headerName: "Age", width: 150 },
+const columns: GridColDef[] = [
+  {
+    field: "name",
+    headerName: "Name",
+    width: 150,
+    cellClassName: "bg-blue-300",
+  },
+  {
+    field: "age",
+    headerName: "Age",
+    width: 150,
+    cellClassName: "bg-blue-300",
+  },
   {
     field: "action",
     headerName: "",
     flex: 1,
+    cellClassName: "bg-blue-300",
+
     renderCell: (params: GridRenderCellParams) => (
       <Box className="w-full flex justify-end gap-2">
         <Button variant="contained" size="small">
