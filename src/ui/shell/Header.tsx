@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <Box
       component="header"
-      className="py-2 px-4 flex items-center justify-between gap-6"
+      className="py-2 app-container flex items-center justify-between gap-6"
     >
       <h2>DGUI</h2>
       <nav className="flex gap-4">

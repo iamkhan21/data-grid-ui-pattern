@@ -8,10 +8,10 @@ function App() {
   return (
     <>
       <Header />
-      <Box component="main" className="py-2 px-4">
+      <Box component="main" className="py-2 app-container">
         <Outlet />
       </Box>
-      <Box component="footer" className="py-1 px-4">
+      <Box component="footer" className="py-1 app-container">
         <small>Powered by Ivan Khanevich</small>
       </Box>
     </>
