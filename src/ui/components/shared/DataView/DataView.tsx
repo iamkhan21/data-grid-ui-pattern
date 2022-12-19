@@ -1,86 +1,45 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from "@mui/material/Button";
-import { DataGrid, GridColDef, GridRowsProp } from "@mui/x-data-grid";
+import { DataGrid } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
-import Dialog from "@mui/material/Dialog";
 
-export type DialogProps = {
-  closeDialog: () => void;
-};
-
-export type BaseProps = {
-  rows: GridRowsProp;
-  columns: (
-    openDialogWithContent: (
-      contentFn: (props: DialogProps) => React.ReactNode
-    ) => void
-  ) => GridColDef[];
-};
-
-type Props = BaseProps & {
+type Props = Parameters<typeof DataGrid>[0] & {
   title?: string | React.ReactNode;
   subtitle?: string | React.ReactNode;
-  addDialog?: (props: DialogProps) => React.ReactNode;
+  btn?: string | React.ReactNode;
+  onBtnClick?: () => void;
 };
+
 export const DataView: React.FC<Props> = ({
   title,
   subtitle,
-  columns,
-  rows,
-  addDialog,
+  btn,
+  onBtnClick,
+  ...props
 }) => {
-  const [dialogContent, setDialogContent] = useState<React.ReactNode | null>(
-    null
-  );
-
-  const openDialog = () => {
-    addDialog && setDialogContent(addDialog({ closeDialog }));
-  };
-
-  const openDialogWithContent = (
-    content: (props: DialogProps) => React.ReactNode
-  ) => {
-    setDialogContent(content({ closeDialog }));
-  };
-
-  const closeDialog = () => {
-    setDialogContent(null);
-  };
-
   return (
     <article>
-      {Boolean(addDialog) && (
-        <Box
-          component="section"
-          sx={{ paddingBlock: 1, display: "flex", alignItems: "end" }}
-        >
-          <Box>
-            {typeof title === "string" ? <h2>{title}</h2> : title}
-            {typeof subtitle === "string" ? <p>{subtitle}</p> : subtitle}
-          </Box>
-
-          <Button sx={{ marginLeft: "auto" }} onClick={openDialog}>
-            Add
-          </Button>
+      <Box
+        component="section"
+        sx={{ paddingBlock: 1, display: "flex", alignItems: "end" }}
+      >
+        <Box>
+          {typeof title === "string" ? <h2>{title}</h2> : title}
+          {typeof subtitle === "string" ? <p>{subtitle}</p> : subtitle}
         </Box>
-      )}
-      <Box component="section" sx={{}}>
-        <DataGrid
-          rows={rows}
-          columns={columns(openDialogWithContent)}
-          autoHeight
-        />
+
+        {Boolean(btn) && typeof btn === "string" ? (
+          <Button sx={{ marginLeft: "auto" }} onClick={onBtnClick}>
+            {btn}
+          </Button>
+        ) : (
+          btn
+        )}
       </Box>
 
-      <Dialog
-        open={Boolean(dialogContent)}
-        onClose={closeDialog}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-        fullWidth
-      >
-        {dialogContent}
-      </Dialog>
+      <Box component="section" sx={{}}>
+        <DataGrid autoHeight {...props} />
+      </Box>
     </article>
   );
 };

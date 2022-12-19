@@ -3,11 +3,6 @@ import { VehiclesTable } from "../../components/shared/VehiclesTable";
 import { GridRenderCellParams, GridRowsProp } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import DialogTitle from "@mui/material/DialogTitle";
-import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
-import DialogActions from "@mui/material/DialogActions";
-import { DialogProps } from "../../components/shared/DataView";
 
 const rows: GridRowsProp = [
   {
@@ -28,55 +23,9 @@ const rows: GridRowsProp = [
     type: "Coupe",
     state: "New",
   },
-  {
-    id: 4,
-    photo: "https://via.placeholder.com/150",
-    type: "Convertible",
-    state: "Used",
-  },
-  {
-    id: 5,
-    photo: "https://via.placeholder.com/150",
-    type: "Hatchback",
-    state: "New",
-  },
-  {
-    id: 6,
-    photo: "https://via.placeholder.com/150",
-    type: "Sedan",
-    state: "Used",
-  },
-  {
-    id: 7,
-    photo: "https://via.placeholder.com/150",
-    type: "SUV",
-    state: "New",
-  },
-  {
-    id: 8,
-    photo: "https://via.placeholder.com/150",
-    type: "Coupe",
-    state: "Used",
-  },
-  {
-    id: 9,
-    photo: "https://via.placeholder.com/150",
-    type: "Convertible",
-    state: "New",
-  },
-  {
-    id: 10,
-    photo: "https://via.placeholder.com/150",
-    type: "Hatchback",
-    state: "Used",
-  },
 ];
 
-const columns = (
-  openDialogWithContent: (
-    contentFn: (props: DialogProps) => React.ReactNode
-  ) => void
-) => [
+const columns = [
   { field: "type", headerName: "Type", maxWidth: 250, flex: 1 },
   { field: "state", headerName: "State", width: 150 },
   {
@@ -92,40 +41,22 @@ const columns = (
           gap: 1,
         }}
       >
-        <Button
-          variant="contained"
-          size="small"
-          onClick={() =>
-            openDialogWithContent(({ closeDialog }) => (
-              <>
-                <DialogTitle id="alert-dialog-title">
-                  Delete vehicle
-                </DialogTitle>
-                <DialogContent>
-                  <DialogContentText id="alert-dialog-description">
-                    Are you sure that you want to remove this vehicle?
-                  </DialogContentText>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={closeDialog}>Cancel</Button>
-                  <Button onClick={closeDialog} autoFocus>
-                    Yes, remove
-                  </Button>
-                </DialogActions>
-              </>
-            ))
-          }
-        >
+        <Button variant="contained" size="small">
           Delete
         </Button>
       </Box>
     ),
   },
 ];
+
 export const VehiclesDP = () => {
   return (
     <article>
-      <VehiclesTable rows={rows} columns={columns} />
+      <VehiclesTable
+        rows={rows}
+        columns={columns}
+        onNewVehicleFormSubmit={(data) => console.log(data)}
+      />
     </article>
   );
 };

@@ -1,18 +1,15 @@
-import React, { FormEvent } from "react";
-import { BaseProps, DataView, DialogProps } from "../DataView";
+import React from "react";
+import { DataView } from "../DataView";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { GridRenderCellParams } from "@mui/x-data-grid";
+import { DataGrid, GridRenderCellParams } from "@mui/x-data-grid";
+import Dialog from "@mui/material/Dialog";
 
-const defaultColumns = (
-  openDialogWithContent: (
-    contentFn: (props: DialogProps) => React.ReactNode
-  ) => void
-) => [
+const defaultColumns = [
   {
     field: "photo",
     headerName: "Photo",
@@ -23,64 +20,81 @@ const defaultColumns = (
   },
 ];
 
-export const VehiclesTable: React.FC<BaseProps> = ({ columns, rows }) => {
-  return (
-    <DataView
-      title={<h1>Test</h1>}
-      columns={(openDialogWithContent) => [
-        ...defaultColumns(openDialogWithContent),
-        ...columns(openDialogWithContent),
-      ]}
-      rows={rows}
-      addDialog={({ closeDialog }) => <VehicleForm closeDialog={closeDialog} />}
-    />
-  );
+type Props = Parameters<typeof DataGrid>[0] & {
+  onNewVehicleFormSubmit: (formData: Record<string, any>) => void;
 };
 
-const VehicleForm: React.FC<DialogProps> = ({ closeDialog }) => {
-  function onSubmit(e: FormEvent) {
+export const VehiclesTable: React.FC<Props> = ({
+  onNewVehicleFormSubmit,
+  ...props
+}) => {
+  const [vehicleDialogOpened, setVehicleDialogOpened] = React.useState(false);
+
+  function closeDialog() {
+    setVehicleDialogOpened(false);
+  }
+
+  function onSubmit(e: React.FormEvent) {
     e.preventDefault();
+    onNewVehicleFormSubmit({ data: "test" });
     closeDialog();
   }
 
   return (
     <>
-      <DialogTitle id="alert-dialog-title">New vehicle</DialogTitle>
-      <DialogContent>
-        <Box
-          component="form"
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 2,
-            paddingBlock: 1,
-          }}
-          id="vehicle-form"
-          onSubmit={onSubmit}
-        >
-          <TextField fullWidth label="Name" variant="outlined" required />
-          <TextField
-            fullWidth
-            label="License plate"
-            variant="outlined"
-            required
-          />
-          <TextField
-            fullWidth
-            label="Internal ID"
-            variant="outlined"
-            required
-          />
-        </Box>
-      </DialogContent>
-      <DialogActions>
-        <Button type="button" onClick={closeDialog}>
-          Cancel
-        </Button>
-        <Button form="vehicle-form" type="submit" autoFocus>
-          Add
-        </Button>
-      </DialogActions>
+      <DataView
+        {...props}
+        title="VEHICLES"
+        subtitle="Add and manage your vehicles."
+        btn={"Add vehicle"}
+        columns={[...defaultColumns, ...props.columns]}
+        onBtnClick={() => setVehicleDialogOpened(true)}
+      />
+
+      <Dialog
+        open={vehicleDialogOpened}
+        onClose={closeDialog}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        fullWidth
+      >
+        <DialogTitle id="alert-dialog-title">New vehicle</DialogTitle>
+        <DialogContent>
+          <Box
+            component="form"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: 2,
+              paddingBlock: 1,
+            }}
+            id="vehicle-form"
+            onSubmit={onSubmit}
+          >
+            <TextField fullWidth label="Name" variant="outlined" required />
+            <TextField
+              fullWidth
+              label="License plate"
+              variant="outlined"
+              required
+            />
+            <TextField
+              fullWidth
+              label="Internal ID"
+              variant="outlined"
+              required
+            />
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button type="button" onClick={closeDialog}>
+            Cancel
+          </Button>
+          <Button form="vehicle-form" type="submit" autoFocus>
+            Add
+          </Button>
+        </DialogActions>
+      </Dialog>
     </>
   );
 };
