@@ -1,29 +1,25 @@
 import React from "react";
-import { VehiclesTable } from "../../components/shared/VehiclesTable";
-import {
-  GridColDef,
-  GridRenderCellParams,
-  GridRowsProp,
-} from "@mui/x-data-grid";
+import { VehiclesGrid } from "../../components/shared/VehiclesGrid";
+import { GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 
-const rows: GridRowsProp = [
+const rows = [
   {
     id: 1,
-    photo: "https://via.placeholder.com/150",
+    photoUrl: "https://via.placeholder.com/150",
     type: "Sedan",
     state: "New",
   },
   {
     id: 2,
-    photo: "https://via.placeholder.com/150",
+    photoUrl: "https://via.placeholder.com/150",
     type: "SUV",
     state: "Used",
   },
   {
     id: 3,
-    photo: "https://via.placeholder.com/150",
+    photoUrl: "https://via.placeholder.com/150",
     type: "Coupe",
     state: "New",
   },
@@ -61,7 +57,7 @@ const columns: GridColDef[] = [
 export const VehiclesDP = () => {
   return (
     <article>
-      <VehiclesTable
+      <VehiclesGrid
         rows={rows}
         columns={columns}
         onNewVehicleFormSubmit={(data) => console.log(data)}

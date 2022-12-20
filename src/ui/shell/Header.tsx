@@ -15,7 +15,7 @@ const Header = () => {
           <Link>Console</Link>
         </NavLink>
         <NavLink to="/dp" className="border-4 border-rose-300">
-          <Link> Dispatch</Link>
+          <Link>Dispatch</Link>
         </NavLink>
       </nav>
     </Box>

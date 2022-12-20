@@ -6,12 +6,17 @@ import DialogActions from "@mui/material/DialogActions";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
+import {
+  DataGrid,
+  GridColDef,
+  GridRenderCellParams,
+  GridRowsProp,
+} from "@mui/x-data-grid";
 import Dialog from "@mui/material/Dialog";
 
 const defaultColumns: GridColDef[] = [
   {
-    field: "photo",
+    field: "photoUrl",
     headerName: "Photo",
     width: 80,
     cellClassName: "bg-yellow-300",
@@ -29,11 +34,17 @@ const defaultColumns: GridColDef[] = [
   },
 ];
 
+type VehicleData = {
+  photoUrl: string;
+  [key: string]: unknown;
+};
+
 type Props = Parameters<typeof DataGrid>[0] & {
+  rows: GridRowsProp & VehicleData[];
   onNewVehicleFormSubmit: (formData: Record<string, any>) => void;
 };
 
-export const VehiclesTable: React.FC<Props> = ({
+export const VehiclesGrid: React.FC<Props> = ({
   onNewVehicleFormSubmit,
   ...props
 }) => {
