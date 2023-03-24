@@ -25,6 +25,9 @@ const AdaptiveActionsMenu: React.FC<Props> = ({ actions }) => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const containerWidth = actions.length * 48;
+
   return (
     <Box
       flexGrow={1}
@@ -39,7 +42,7 @@ const AdaptiveActionsMenu: React.FC<Props> = ({ actions }) => {
         ".menu": {
           display: "none",
         },
-        "@container card (width < 250px)": {
+        [`@container card (width < ${containerWidth}px)`]: {
           ".nav": {
             display: "none",
           },

@@ -17,6 +17,9 @@ const Header = () => {
         <NavLink to="/dp" className="border-4 border-rose-300">
           <Link>Dispatch</Link>
         </NavLink>
+        <NavLink to="/adaptive-menu" className="border-4 border-rose-300">
+          <Link>Adaptive Menu</Link>
+        </NavLink>
       </nav>
     </Box>
   );

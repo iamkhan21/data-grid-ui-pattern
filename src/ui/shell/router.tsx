@@ -1,9 +1,9 @@
 import { createReactRouter, createRouteConfig } from "@tanstack/react-router";
 import App from "./App";
-import { Test, VehiclesDP, VehiclesPC } from "../routes";
+import { AdaptiveMenu, VehiclesDP, VehiclesPC } from "../routes";
 
 const rootRoute = createRouteConfig({
-  component: () => <App />,
+  component: App,
 });
 
 const indexRoute = rootRoute.createRoute({
@@ -16,12 +16,16 @@ const dpRoute = rootRoute.createRoute({
   component: VehiclesDP,
 });
 
-const testRoute = rootRoute.createRoute({
-  path: "/test",
-  component: Test,
+const adaptiveMenuRoute = rootRoute.createRoute({
+  path: "/adaptive-menu",
+  component: AdaptiveMenu,
 });
 
-const routeConfig = rootRoute.addChildren([indexRoute, dpRoute, testRoute]);
+const routeConfig = rootRoute.addChildren([
+  indexRoute,
+  dpRoute,
+  adaptiveMenuRoute,
+]);
 
 const router = createReactRouter({ routeConfig });
 export default router;

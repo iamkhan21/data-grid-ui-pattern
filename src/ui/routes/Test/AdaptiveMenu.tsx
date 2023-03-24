@@ -58,20 +58,24 @@ const actions = [
   },
 ];
 
-const Test = () => {
+const AdaptiveMenu = () => {
   return (
     <Box
       display={"grid"}
-      gridTemplateColumns={"repeat(auto-fit, minmax(450px, 1fr))"}
+      gridTemplateColumns={"repeat(auto-fit, minmax(350px, 1fr))"}
       gap={2}
     >
-      <CustomCard actions={<AdaptiveActionsMenu actions={actions} />} />
       <CustomCard
-        title={"Super long title and more one"}
+        title={"Middle size title"}
         actions={<AdaptiveActionsMenu actions={actions} />}
       />
+      <CustomCard
+        title={"Super long size title and more one"}
+        actions={<AdaptiveActionsMenu actions={actions} />}
+      />
+      <CustomCard actions={<AdaptiveActionsMenu actions={actions} />} />
     </Box>
   );
 };
 
-export default Test;
+export default AdaptiveMenu;
