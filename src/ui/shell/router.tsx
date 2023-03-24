@@ -1,6 +1,6 @@
 import { createReactRouter, createRouteConfig } from "@tanstack/react-router";
 import App from "./App";
-import { VehiclesDP, VehiclesPC } from "../routes";
+import { Test, VehiclesDP, VehiclesPC } from "../routes";
 
 const rootRoute = createRouteConfig({
   component: () => <App />,
@@ -16,7 +16,12 @@ const dpRoute = rootRoute.createRoute({
   component: VehiclesDP,
 });
 
-const routeConfig = rootRoute.addChildren([indexRoute, dpRoute]);
+const testRoute = rootRoute.createRoute({
+  path: "/test",
+  component: Test,
+});
+
+const routeConfig = rootRoute.addChildren([indexRoute, dpRoute, testRoute]);
 
 const router = createReactRouter({ routeConfig });
 export default router;
