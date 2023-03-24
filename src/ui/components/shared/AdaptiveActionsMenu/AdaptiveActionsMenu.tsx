@@ -36,6 +36,7 @@ const AdaptiveActionsMenu: React.FC<Props> = ({ actions }) => {
       sx={{
         containerType: "inline-size",
         containerName: "card",
+        minWidth: "50px",
         ".nav": {
           display: "flex",
         },
