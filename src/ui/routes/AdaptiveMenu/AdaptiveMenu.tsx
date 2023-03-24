@@ -6,7 +6,7 @@ import Box from "@mui/material/Box";
 import HomeIcon from "@mui/icons-material/Home";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import SettingsIcon from "@mui/icons-material/Settings";
-import AdaptiveActionsMenu from "../../components/shared/AdaptiveMenuActions/AdaptiveActionsMenu";
+import { AdaptiveActionsMenu } from "../../components/shared/AdaptiveActionsMenu";
 
 type CustomCardProps = {
   actions?: React.ReactNode;
