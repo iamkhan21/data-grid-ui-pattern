@@ -10,9 +10,13 @@ import AdaptiveActionsMenu from "../../components/shared/AdaptiveMenuActions/Ada
 
 type CustomCardProps = {
   actions?: React.ReactNode;
+  title?: string;
 };
 
-const CustomCard: React.FC<CustomCardProps> = ({ actions }) => {
+const CustomCard: React.FC<CustomCardProps> = ({
+  actions,
+  title = "Title",
+}) => {
   return (
     <Card sx={{ width: "100%" }}>
       <CardContent>
@@ -23,7 +27,7 @@ const CustomCard: React.FC<CustomCardProps> = ({ actions }) => {
           justifyContent={"space-between"}
         >
           <Typography variant="h5" component="h5">
-            Card Title
+            {title}
           </Typography>
           {actions}
         </Box>
@@ -56,10 +60,16 @@ const actions = [
 
 const Test = () => {
   return (
-    <Box display={"flex"} gap={2}>
+    <Box
+      display={"grid"}
+      gridTemplateColumns={"repeat(auto-fit, minmax(450px, 1fr))"}
+      gap={2}
+    >
       <CustomCard actions={<AdaptiveActionsMenu actions={actions} />} />
-      <CustomCard actions={<AdaptiveActionsMenu actions={actions} />} />
-      <CustomCard actions={<AdaptiveActionsMenu actions={actions} />} />
+      <CustomCard
+        title={"Super long title and more one"}
+        actions={<AdaptiveActionsMenu actions={actions} />}
+      />
     </Box>
   );
 };
